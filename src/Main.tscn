@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/RtsCameraController.gd" type="Script" id=1]
+[ext_resource path="res://src/Main.gd" type="Script" id=2]
+
+[node name="Main" type="Node"]
+script = ExtResource( 2 )
+
+[node name="World" type="Spatial" parent="."]
+
+[node name="Scene" type="Spatial" parent="World"]
+
+[node name="CSGBox" type="CSGBox" parent="World/Scene"]
+
+[node name="CSGBox" type="CSGBox" parent="World/Scene/CSGBox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.95505, 0, -5.68628 )
+
+[node name="RtsCameraController" type="Spatial" parent="World"]
+script = ExtResource( 1 )
+
+[node name="Elevation" type="Spatial" parent="World/RtsCameraController"]
+transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="World/RtsCameraController/Elevation"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
