@@ -1,19 +1,209 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/RtsCameraController.gd" type="Script" id=1]
 [ext_resource path="res://src/Main.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/map.png" type="Texture" id=3]
+[ext_resource path="res://assets/icons/energy.svg" type="Texture" id=4]
+[ext_resource path="res://assets/icons/water.svg" type="Texture" id=5]
+[ext_resource path="res://assets/icons/wood.svg" type="Texture" id=6]
+[ext_resource path="res://assets/icons/food.svg" type="Texture" id=7]
+[ext_resource path="res://assets/icons/rock.svg" type="Texture" id=8]
+[ext_resource path="res://assets/icons/metals.svg" type="Texture" id=9]
+[ext_resource path="res://assets/icons/money.svg" type="Texture" id=10]
+[ext_resource path="res://assets/icons/housing.svg" type="Texture" id=11]
+
+[sub_resource type="Animation" id=1]
+resource_name = "SunRotate"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -90, 0, 0 ), Vector3( 270, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3, 9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "SunSpin"
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 6, 9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 150, 0 ), Vector3( 0, -50, 300 ), Vector3( 0, -150, 0 ), Vector3( 0, -50, -300 ) ]
+}
+
+[sub_resource type="Environment" id=3]
+background_mode = 1
+background_color = Color( 0.505882, 0.85098, 1, 1 )
+ambient_light_color = Color( 0.505882, 0.85098, 1, 1 )
+ambient_light_energy = 0.05
+fog_enabled = true
+fog_color = Color( 0, 0.784314, 1, 1 )
+fog_sun_color = Color( 0.988235, 1, 0.678431, 1 )
+fog_sun_amount = 1.0
+fog_depth_begin = 100.0
+fog_depth_end = 200.0
+fog_depth_curve = 3.03143
+fog_transmit_enabled = true
+fog_height_enabled = true
+fog_height_min = 5.0
+fog_height_max = 10.0
+dof_blur_far_distance = 30.0
+dof_blur_far_quality = 0
+
+[sub_resource type="Animation" id=4]
+length = 12.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:environment:background_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 3, 4, 4.5, 5, 6, 8, 9, 9.5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.505882, 0.85098, 1, 1 ), Color( 0.505882, 0.85098, 1, 1 ), Color( 0.698039, 0.509804, 1, 1 ), Color( 1, 0.505882, 0, 1 ), Color( 0.85098, 0.164706, 0.164706, 1 ), Color( 0.298039, 0.14902, 0.568627, 1 ), Color( 0, 0.113725, 0.164706, 1 ), Color( 0, 0.0392157, 0.372549, 1 ), Color( 0.85098, 0.164706, 0.164706, 1 ), Color( 1, 0.505882, 0, 1 ), Color( 0.698039, 0.509804, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:environment:ambient_light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2, 3, 4, 4.5, 5, 6, 8, 9, 9.5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.505882, 0.85098, 1, 1 ), Color( 0.505882, 0.85098, 1, 1 ), Color( 0.698039, 0.509804, 1, 1 ), Color( 1, 0.505882, 0, 1 ), Color( 0.85098, 0.164706, 0.164706, 1 ), Color( 0.298039, 0.14902, 0.568627, 1 ), Color( 0, 0.113725, 0.164706, 1 ), Color( 0, 0.0392157, 0.372549, 1 ), Color( 0.85098, 0.164706, 0.164706, 1 ), Color( 1, 0.505882, 0, 1 ), Color( 0.698039, 0.509804, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:environment:fog_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2, 3, 4, 4.5, 5, 6, 8, 9, 9.5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0.784314, 1, 1 ), Color( 0, 0.784314, 1, 1 ), Color( 1, 0, 1, 1 ), Color( 1, 0.588235, 0.0862745, 1 ), Color( 1, 0, 0, 1 ), Color( 0.498039, 0.0509804, 1, 1 ), Color( 0, 0, 1, 1 ), Color( 0, 0.261438, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 0.588235, 0.0862745, 1 ), Color( 1, 0, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:environment:fog_sun_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2, 4, 4.5, 5, 8, 9, 9.5, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.988235, 1, 0.678431, 1 ), Color( 0.988235, 1, 0.678431, 1 ), Color( 1, 0.788235, 0.494118, 1 ), Color( 1, 0.505882, 0.505882, 1 ), Color( 1, 1, 1, 1 ), Color( 0.994958, 1, 0.862185, 1 ), Color( 1, 0.505882, 0.505882, 1 ), Color( 1, 0.788235, 0.494118, 1 ), Color( 0.988235, 1, 0.678431, 1 ) ]
+}
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
 
 [node name="World" type="Spatial" parent="."]
 
+[node name="Sun" type="DirectionalLight" parent="World"]
+transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 19.3166, 0 )
+visible = false
+light_energy = 0.333333
+shadow_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/Sun"]
+autoplay = "SunRotate"
+playback_speed = 0.33
+anims/SunRotate = SubResource( 1 )
+
+[node name="Sun2" type="CSGSphere" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -73.3333, 230 )
+radius = 14.793
+
+[node name="OmniLight" type="OmniLight" parent="World/Sun2"]
+omni_range = 300.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/Sun2/OmniLight"]
+autoplay = "SunSpin"
+playback_speed = 0.33
+anims/SunSpin = SubResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/WorldEnvironment"]
+autoplay = "SkyColor"
+playback_speed = 0.33
+anims/SkyColor = SubResource( 4 )
+
 [node name="Scene" type="Spatial" parent="World"]
 
-[node name="CSGBox" type="CSGBox" parent="World/Scene"]
+[node name="plane" type="CSGBox" parent="World/Scene"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.112, -0.05, 0.081 )
+width = 400.0
+height = 0.1
+depth = 400.0
 
-[node name="CSGBox" type="CSGBox" parent="World/Scene/CSGBox"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.95505, 0, -5.68628 )
+[node name="CSGBox" type="CSGBox" parent="World/Scene"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100552, 0.793673, 0.454301 )
+cast_shadow = 2
+width = 11.437
+height = 1.529
+depth = 9.229
+
+[node name="CSGBox2" type="CSGBox" parent="World/Scene"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100552, 2.30426, 0.454301 )
+cast_shadow = 2
+width = 7.648
+height = 1.529
+depth = 5.397
+
+[node name="CSGBox3" type="CSGBox" parent="World/Scene"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100552, 6.9287, 0.454301 )
+cast_shadow = 2
+width = 3.42
+height = 7.646
+depth = 2.111
+
+[node name="CSGSphere" type="CSGSphere" parent="World/Scene"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.166345, 8.77995, 2.00295 )
+
+[node name="OmniLight" type="OmniLight" parent="World/Scene/CSGSphere"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0194864, -0.142394, -0.177275 )
+light_energy = 0.5
+omni_range = 20.0
+
+[node name="builder" type="CSGBox" parent="World/Scene"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.76238, 1, 11.3085 )
 
 [node name="RtsCameraController" type="Spatial" parent="World"]
 script = ExtResource( 1 )
@@ -23,3 +213,245 @@ transform = Transform( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0
 
 [node name="Camera" type="Camera" parent="World/RtsCameraController/Elevation"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="Button7" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+margin_right = 70.0
+margin_bottom = 30.0
+text = "1234"
+icon = ExtResource( 10 )
+
+[node name="Button8" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+margin_left = 70.0
+margin_right = 145.0
+margin_bottom = 30.0
+text = "1 / 10"
+icon = ExtResource( 11 )
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+margin_left = 145.0
+margin_right = 215.0
+margin_bottom = 30.0
+text = "1234"
+icon = ExtResource( 4 )
+
+[node name="Button2" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+margin_left = 215.0
+margin_right = 285.0
+margin_bottom = 30.0
+text = "1234"
+icon = ExtResource( 5 )
+
+[node name="Button3" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+margin_left = 285.0
+margin_right = 355.0
+margin_bottom = 30.0
+text = "1234"
+icon = ExtResource( 7 )
+
+[node name="Button5" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+margin_left = 355.0
+margin_right = 425.0
+margin_bottom = 30.0
+text = "1234"
+icon = ExtResource( 6 )
+
+[node name="Button4" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+margin_left = 425.0
+margin_right = 495.0
+margin_bottom = 30.0
+text = "1234"
+icon = ExtResource( 8 )
+
+[node name="Button6" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+margin_left = 495.0
+margin_right = 565.0
+margin_bottom = 30.0
+text = "1234"
+icon = ExtResource( 9 )
+
+[node name="Blank" type="ColorRect" parent="Control/VBoxContainer"]
+margin_top = 34.0
+margin_right = 1024.0
+margin_bottom = 172.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0 )
+
+[node name="Blank2" type="ColorRect" parent="Control/VBoxContainer"]
+margin_top = 176.0
+margin_right = 1024.0
+margin_bottom = 315.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0 )
+
+[node name="Blank3" type="ColorRect" parent="Control/VBoxContainer"]
+margin_top = 319.0
+margin_right = 1024.0
+margin_bottom = 457.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0 )
+
+[node name="MainControls" type="HBoxContainer" parent="Control/VBoxContainer"]
+margin_top = 461.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/MainControls"]
+margin_right = 253.0
+margin_bottom = 139.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="Control/VBoxContainer/MainControls"]
+margin_left = 257.0
+margin_right = 510.0
+margin_bottom = 139.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="ColorRect4" type="ColorRect" parent="Control/VBoxContainer/MainControls"]
+margin_left = 514.0
+margin_right = 767.0
+margin_bottom = 139.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="GridContainer" type="GridContainer" parent="Control/VBoxContainer/MainControls"]
+margin_left = 771.0
+margin_right = 1024.0
+margin_bottom = 139.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 4
+
+[node name="Button" type="Button" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_right = 60.0
+margin_bottom = 43.0
+text = "Unit"
+
+[node name="Button2" type="Button" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 43.0
+text = "Tower"
+
+[node name="ColorRect5" type="ColorRect" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_left = 128.0
+margin_right = 188.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="ColorRect6" type="ColorRect" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_left = 192.0
+margin_right = 252.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="ColorRect7" type="ColorRect" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_top = 47.0
+margin_right = 60.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="ColorRect8" type="ColorRect" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_left = 64.0
+margin_top = 47.0
+margin_right = 124.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="ColorRect9" type="ColorRect" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_left = 128.0
+margin_top = 47.0
+margin_right = 188.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="ColorRect10" type="ColorRect" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_left = 192.0
+margin_top = 47.0
+margin_right = 252.0
+margin_bottom = 90.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="ColorRect11" type="ColorRect" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_top = 94.0
+margin_right = 60.0
+margin_bottom = 137.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="ColorRect12" type="ColorRect" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_left = 64.0
+margin_top = 94.0
+margin_right = 124.0
+margin_bottom = 137.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="ColorRect13" type="ColorRect" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_left = 128.0
+margin_top = 94.0
+margin_right = 188.0
+margin_bottom = 137.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
+
+[node name="ColorRect14" type="ColorRect" parent="Control/VBoxContainer/MainControls/GridContainer"]
+margin_left = 192.0
+margin_top = 94.0
+margin_right = 252.0
+margin_bottom = 137.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color( 1, 1, 1, 0.121569 )
