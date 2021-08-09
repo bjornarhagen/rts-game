@@ -18,14 +18,14 @@ signal camera_moved(new_location)
 # movement
 export (float, 0, 100, 0.5) var movement_speed = 20
 # zoom
-export (float, 0, 100, 0.5) var min_zoom = 3
-export (float, 0, 100, 0.5) var max_zoom = 20
+export (float, 0, 100, 0.5) var min_zoom = 10
+export (float, 0, 100, 0.5) var max_zoom = 30
 export (float, 0, 100, 0.5) var zoom_speed = 20
-export (float, 0, 1, 0.05) var zoom_speed_damp = 0.8
+export (float, 0, 1, 0.05) var zoom_speed_damp = 0.5
 # rotation
-export (int, 0, 90) var min_elevation_angle = 10 
-export (int, 0, 90) var max_elevation_angle = 80
-export (float, 0, 100, 0.5) var rotation_speed = 20
+export (int, 0, 90) var min_elevation_angle = 30
+export (int, 0, 90) var max_elevation_angle = 90
+export (float, 0, 100, 0.5) var rotation_speed = 15
 # pan
 export (float, 0, 10, 0.5) var pan_speed = 2
 # flags
